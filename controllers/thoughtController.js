@@ -43,7 +43,7 @@ module.exports = {
         _id: req.params.thougtId,
       });
 
-      if (!thougt) {
+      if (!thought) {
         res.status(404).json({ message: 'No thought with that ID' });
       }
 

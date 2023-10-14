@@ -40,16 +40,23 @@ module.exports = {
   // Delete a user
   async deleteUser(req, res) {
     try {
-      const user = await User.findOneAndDelete({
-        _id: req.params.userId,
-      });
+      const userId = req.params.userId;
+
+      const user = await User.findOne({ _id: userId });
+
+      // const user = await User.findOneAndDelete({
+      //   _id: req.params.userId,
+      // });
 
       if (!user) {
-        res.status(404).json({ message: 'No course with that ID' });
+        res.status(404).json({ message: 'No user with that ID' });
       }
 
-      await Thought.deleteMany({ _id: { $in: User.thoughts } });
-      res.json({ message: 'Course and students deleted!' });
+      await Thought.deleteMany({ _id: { $in: user.thoughts } });
+      
+      await User.deleteOne({ _id: user});
+      
+      res.json({ message: 'User deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -62,11 +69,9 @@ module.exports = {
         { $set: req.body },
         { runValidators: true, new: true }
       );
-
       if (!user) {
         res.status(404).json({ message: 'No course with this id!' });
       }
-
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
