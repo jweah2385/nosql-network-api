@@ -27,7 +27,7 @@ This project is licensed under the MIT License.
 This is a preview of the application
 
 
-<img width="640" alt="Screenshot 2023-10-21 at 6 36 54 PM" src="https://github.com/jweah2385/nosql-network-api/assets/134350647/9a460ecc-663b-4139-872a-6f346817db94">
+<img width="500" alt="Screenshot 2023-10-21 at 6 36 54 PM" src="https://github.com/jweah2385/nosql-network-api/assets/134350647/9a460ecc-663b-4139-872a-6f346817db94">
 
 
 
