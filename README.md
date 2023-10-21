@@ -1,5 +1,5 @@
 # NoSQL-NetWork-API
-
+This is a network api application that stores data with a nosql databse using mongoDB and mongoose.
 
 ## Table of Contents
 
@@ -13,10 +13,10 @@
 - [Contact](#contact)
 
 ## Description
-
+This application is a data api application that will give the user the ability to post delete update and read data on the users, thoughts, friends and reactions.
 
 ## Usage
-
+Open the application in the terminal and run "nmp i" to install all the packages need. Then run "node index" inorder to run the server and open the database. Once the database is running, buy using insomnia postman or any other application of your choice, you will have the ability to delete, read, update and add information to the database.
 
 ## License
 
@@ -26,8 +26,6 @@ This project is licensed under the MIT License.
 
 This is a preview of the application
 
-
-<img width="790" alt="Screenshot 2023-09-15 at 5 59 18 PM" src="">
 
 ## Installation
 

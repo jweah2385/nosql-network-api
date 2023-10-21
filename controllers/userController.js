@@ -45,10 +45,6 @@ module.exports = {
 
       const user = await User.findOne({ _id: userId });
 
-      // const user = await User.findOneAndDelete({
-      //   _id: req.params.userId,
-      // });
-
       if (!user) {
         res.status(404).json({ message: 'No user with that ID' });
       }
@@ -78,17 +74,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // async getUserFriends(req, res) {
-  //   try {
-  //     const user = await User.findById(req.params.userId).populate('friends');
-  //     if (!user) {
-  //       return res.status(404).json({ message: 'No user with that ID' });
-  //     }
-  //     res.json(user.friends);
-  //   } catch (err) {
-  //     res.status(500).json(err);
-  //   }
-  // },
+ 
 
   async getUserFriends(req, res) {
     try {
@@ -99,22 +85,7 @@ module.exports = {
     }
   },
 
-  //Adding friend
-  // async addFriend(req, res) {
-  //   try {
-  //     const user = await User.findByIdAndUpdate(
-  //       { _id: req.params.userId },
-  //       { $addTset: { friends: req.params.friendId } },
-  //       { new: true }
-  //     );
-  //     if (!user) {
-  //       res.status(404).json({ message: 'No course with this id!' });
-  //     }
-  //     res.json(user);
-  //   } catch (err) {
-  //     res.status(500).json(err);
-  //   }
-  // },
+
   async addFriend(req, res) {
     try {
       const user = await User.findByIdAndUpdate(

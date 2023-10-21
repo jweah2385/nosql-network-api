@@ -73,6 +73,7 @@ module.exports = {
     }
   },
 
+  //Get Reactions
   async getReactions(req, res) {
     try {
       const reactions = await Thought.find().select('reactions');
@@ -82,23 +83,9 @@ module.exports = {
     }
   },
 
-  // async addReaction(req, res) {
-  //   try {
-  //     const thought = await Thought.findOneAndUpdate(
-  //       { _id: req.params.thoughtId },
-  //       { $push: { reactions: req.body } },
-  //       { runValidators: true, new: true}
-  //     );
-  //     if(!thought) {
-  //       return res.status(404).json({message: "No id"})
-  //     }
-  //     res.status(200).json(thought);
-  //   } catch (err) {
-  //     res.status(500).json(err)
-  //   }
-  // }
+ 
 
-  // ADD NEW REACTION TO THOUGHT'S REACTION ARRAY
+  // Add Reactions
   addReaction: async (req, res) => {
     try {
       const thought = await Thought.findOneAndUpdate(
