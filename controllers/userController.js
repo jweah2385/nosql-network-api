@@ -1,4 +1,3 @@
-
 const { User, Thought } = require('../models');
 
 module.exports = {
@@ -11,6 +10,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // Get one user
   async getSingleUser(req, res) {
     try {
@@ -27,6 +27,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
   // Create a user
   async createUser(req, res) {
     try {
@@ -53,9 +54,9 @@ module.exports = {
       }
 
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
-      
-      await User.deleteOne({ _id: user});
-      
+
+      await User.deleteOne({ _id: user });
+
       res.json({ message: 'User deleted!' });
     } catch (err) {
       res.status(500).json(err);
@@ -71,6 +72,58 @@ module.exports = {
       );
       if (!user) {
         res.status(404).json({ message: 'No course with this id!' });
+      }
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  // async getUserFriends(req, res) {
+  //   try {
+  //     const user = await User.findById(req.params.userId).populate('friends');
+  //     if (!user) {
+  //       return res.status(404).json({ message: 'No user with that ID' });
+  //     }
+  //     res.json(user.friends);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // },
+
+  async getUserFriends(req, res) {
+    try {
+      const friends = await User.find().select('friends');
+      res.json(friends);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  //Adding friend
+  // async addFriend(req, res) {
+  //   try {
+  //     const user = await User.findByIdAndUpdate(
+  //       { _id: req.params.userId },
+  //       { $addTset: { friends: req.params.friendId } },
+  //       { new: true }
+  //     );
+  //     if (!user) {
+  //       res.status(404).json({ message: 'No course with this id!' });
+  //     }
+  //     res.json(user);
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // },
+  async addFriend(req, res) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId } }, // Use $addToSet to add a friend if not already in the array
+        { new: true }
+      );
+      if (!user) {
+        res.status(404).json({ message: 'No user with this id!' });
       }
       res.json(user);
     } catch (err) {
