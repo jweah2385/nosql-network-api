@@ -44,4 +44,4 @@ This is a preview of the application
 
 ## Contact
 
-jweah@aggies.ncat.edu
+j_weah@uncg.edu
